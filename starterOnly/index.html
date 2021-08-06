@@ -79,6 +79,7 @@
 
                 <label for="first">Prénom</label><br>
                 <input class="text-control" type="text" id="first" name="first" minlength="2"/><br>
+                <span class="errorfirstname"></span>
 
               </div>
 
@@ -86,6 +87,7 @@
 
                 <label for="last">Nom</label><br>
                 <input class="text-control" type="text" id="last" name="last" minlength="2"/><br>
+                <span class="errorlastname"></span>
 
               </div>
 
@@ -93,6 +95,7 @@
 
                 <label for="email">E-mail</label><br>
                 <input class="text-control" type="email" id="email" name="email"/><br>
+                <span class="erroremail"></span>
 
               </div>
 
@@ -100,6 +103,7 @@
 
                 <label for="birthdate">Date de naissance</label><br>
                 <input class="text-control" type="date" id="birthdate" name="birthdate"/><br>
+                <span class="errorbirthdate"></span>
 
               </div>
 
@@ -107,6 +111,7 @@
 
                 <label for="quantity">À combien de tournois GameOn avez-vous déjà participé ?</label><br>
                 <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99">
+                <span class="errorquantitytournament"></span>
 
               </div>
 
@@ -131,12 +136,15 @@
                 <input class="checkbox-input" type="radio" id="location6" name="location" value="Portland"/>
                 <label class="checkbox-label" for="location6"> <span class="checkbox-icon"></span>Portland</label>
 
+                <span class="errorwhichtown"></span>
+
               </div>
 
               <div class="formData">
 
                 <input class="checkbox-input" type="checkbox" id="checkbox1" checked/>
                 <label class="checkbox2-label" for="checkbox1" required> <span class="checkbox-icon"></span>J'ai lu et accepté les conditions d'utilisation.</label>
+                <span class="errorconditionuser"></span>
                 <br>
 
                 <input class="checkbox-input" type="checkbox" id="checkbox2" />

@@ -39,7 +39,7 @@ function closeModal() {
 
 /*----------------------- GESTION  DU FORMULAIRE -------------------------*/
 
-// Les variables 
+// Variables 
 
 const form = document.querySelector("#formulaire");
 const firstName = document.querySelector("#first");
@@ -49,6 +49,17 @@ const birthdayDate = document.querySelector("#birthdate");
 const quantityTournament = document.querySelector("#quantity");
 const modalSubmit = document.querySelector(".btn-submit");
 
+// Variables d'erreurs
+
+const errorFirstName = document.querySelector(".errorfirstname");
+const errorLastName = document.querySelector(".errorlastname");
+const errorEmail = document.querySelector(".erroremail");
+const errorBirthdate = document.querySelector(".errorbirthdate");
+const errorQuantityTournament = document.querySelector(".errorquantitytournament");
+const errorWhichTown = document.querySelector("errorwhichtown");
+const errorConditionUser = document.querySelector("errorconditionuser");
+
+/* Test récupération des données du formulaire
 
 form.addEventListener('submit', submitValidateTest);
 
@@ -61,6 +72,23 @@ function submitValidateTest(e) {
   console.log("Adresse email : " + email.value);
   console.log("Date de naissance : " + birthdayDate.value);
 
+} */
+
+// Click to validate form
+
+form.addEventListener('submit', submitValidate);
+
+// Function to validate value 
+
+function submitValidate (e) {
+
+  e.preventDefault(); 
+
+  let firstNameValid = false;
+  let lastNameValid = false;
+  let emailValid = false;
+  let birthdayDateValid = false; 
+  let quantityTournamentValid = false; 
+  let whichTownValid = false; 
+
 }
-
-
