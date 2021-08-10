@@ -90,20 +90,45 @@ function submitValidate (e) {
   let birthdayDateValid = false; 
   let quantityTournamentValid = false; 
   let whichTownValid = false;
-  let regExpFirstName = /[^A-Za-z_]/;
+  let regExpFirstName = /[^A-Za-z\-]/;
+  let regExpLastName = /[^A-Za-z\-]/;
+  /* let regExpMinCharacters = /^.{4,}$/; */
+
+  // Vérification du champ Prénom 
 
   if (firstName.value == "") {
-    errorFirstName.innerHTML = "Veuillez entrer 2 caractères minimum pour le champ Prénom";
+    errorFirstName.innerHTML = "Veuillez préciser votre Prénom dans ce champ.";
     firstName.style.border = "2px solid #e54858";
     firstNameValid = false;
   } else if (regExpFirstName.test(firstName.value)) {
-      errorFirstName.innerHTML = "Veuillez entrer seulement des lettres et non des caractères spéciaux ou des chiffres";
+      errorFirstName.innerHTML = "Veuillez entrer seulement des lettres et non des caractères spéciaux ou des chiffres.";
       firstName.style.border = "2px solid #e54858";
       firstNameValid = false;
-  }
+  } /* else if (regExpMinCharacters.test(firstName.value)) {
+      errorFirstName.innerHTML = "Veuillez entrer au minimum 2 caractères."
+      firstName.style.border = "2px solid #e54858";
+      firstNameValid = false;
+  }*/
   else {
     firstNameValid = true;
     firstName.style.border = "0px";
     errorFirstName.innerHTML = "";
+  }
+
+  // Vérification du champ Nom
+
+  if (lastName.value == "") {
+    errorLastName.innerHTML = "Veuillez préciser votre Nom dans ce champ.";
+    lastName.style.border = "2px solid #e54858";
+    lastNameValid = false;
+  } else if (regExpLastName.test(lastName.value)) {
+      errorLastName.innerHTML = "Veuillez entrer seulement des lettres et non des caractères spéciaux ou des chiffres";
+      lastName.style.border = "2px solid #e54858";
+      lastNameValid = false;
+  }
+  else {
+    lastNameValid = true;
+    lastName.style.border = "0px";
+    errorLastName.innerHTML = "";
   }
 }
