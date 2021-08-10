@@ -22,20 +22,11 @@ function editNav() {
 /*---- Fonction permettant d'ouvrir et de fermer la fenetre modale-----*/
 
 // launch modal event
-modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
+modalBtn.forEach((btn) => btn.addEventListener("click",() => modalbg.style.display = "block"));
 
 // Click to leave
-modalClose.addEventListener("click", closeModal);
+modalClose.addEventListener("click",() => modalbg.style.display = "none");
 
-// launch modal form
-function launchModal() {
-  modalbg.style.display = "block";
-}
-
-// Close modal form
-function closeModal() {
-  modalbg.style.display = "none";
-}
 
 /*----------------------- GESTION  DU FORMULAIRE -------------------------*/
 
@@ -90,9 +81,7 @@ function submitValidate (e) {
   let birthdayDateValid = false; 
   let quantityTournamentValid = false; 
   let whichTownValid = false;
-  let regExpFirstName = /[^A-Za-z\-]/;
-  let regExpLastName = /[^A-Za-z\-]/;
-  /* let regExpMinCharacters = /^.{4,}$/; */
+  let regExpName = /^[A-Za-z\-]{2,}$/;
 
   // Vérification du champ Prénom 
 
@@ -100,15 +89,12 @@ function submitValidate (e) {
     errorFirstName.innerHTML = "Veuillez préciser votre Prénom dans ce champ.";
     firstName.style.border = "2px solid #e54858";
     firstNameValid = false;
-  } else if (regExpFirstName.test(firstName.value)) {
-      errorFirstName.innerHTML = "Veuillez entrer seulement des lettres et non des caractères spéciaux ou des chiffres.";
+  } 
+  else if (regExpName.test(firstName.value)===false) {
+      errorFirstName.innerHTML = "Veuillez entrer au minimum 2 caratères et seulement des lettres.";
       firstName.style.border = "2px solid #e54858";
       firstNameValid = false;
-  } /* else if (regExpMinCharacters.test(firstName.value)) {
-      errorFirstName.innerHTML = "Veuillez entrer au minimum 2 caractères."
-      firstName.style.border = "2px solid #e54858";
-      firstNameValid = false;
-  }*/
+  } 
   else {
     firstNameValid = true;
     firstName.style.border = "0px";
@@ -121,8 +107,8 @@ function submitValidate (e) {
     errorLastName.innerHTML = "Veuillez préciser votre Nom dans ce champ.";
     lastName.style.border = "2px solid #e54858";
     lastNameValid = false;
-  } else if (regExpLastName.test(lastName.value)) {
-      errorLastName.innerHTML = "Veuillez entrer seulement des lettres et non des caractères spéciaux ou des chiffres";
+  } else if (regExpName.test(lastName.value)===false) {
+      errorLastName.innerHTML = "Veuillez entrer au minimum 2 caratères et seulement des lettres.";
       lastName.style.border = "2px solid #e54858";
       lastNameValid = false;
   }
