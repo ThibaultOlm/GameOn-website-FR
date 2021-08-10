@@ -51,13 +51,13 @@ const modalSubmit = document.querySelector(".btn-submit");
 
 // Variables d'erreurs
 
-const errorFirstName = document.querySelector(".errorfirstname");
-const errorLastName = document.querySelector(".errorlastname");
-const errorEmail = document.querySelector(".erroremail");
-const errorBirthdate = document.querySelector(".errorbirthdate");
-const errorQuantityTournament = document.querySelector(".errorquantitytournament");
-const errorWhichTown = document.querySelector("errorwhichtown");
-const errorConditionUser = document.querySelector("errorconditionuser");
+const errorFirstName = document.querySelector("#errorfirstname");
+const errorLastName = document.querySelector("#errorlastname");
+const errorEmail = document.querySelector("#erroremail");
+const errorBirthdate = document.querySelector("#errorbirthdate");
+const errorQuantityTournament = document.querySelector("#errorquantitytournament");
+const errorWhichTown = document.querySelector("#errorwhichtown");
+const errorConditionUser = document.querySelector("#errorconditionuser");
 
 /* Test récupération des données du formulaire
 
@@ -89,6 +89,21 @@ function submitValidate (e) {
   let emailValid = false;
   let birthdayDateValid = false; 
   let quantityTournamentValid = false; 
-  let whichTownValid = false; 
+  let whichTownValid = false;
+  let regExpFirstName = /[^A-Za-z_]/;
 
+  if (firstName.value == "") {
+    errorFirstName.innerHTML = "Veuillez entrer 2 caractères minimum pour le champ Prénom";
+    firstName.style.border = "2px solid #e54858";
+    firstNameValid = false;
+  } else if (regExpFirstName.test(firstName.value)) {
+      errorFirstName.innerHTML = "Veuillez entrer seulement des lettres et non des caractères spéciaux ou des chiffres";
+      firstName.style.border = "2px solid #e54858";
+      firstNameValid = false;
+  }
+  else {
+    firstNameValid = true;
+    firstName.style.border = "0px";
+    errorFirstName.innerHTML = "";
+  }
 }
