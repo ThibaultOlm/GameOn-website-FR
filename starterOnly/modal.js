@@ -94,6 +94,7 @@ function submitValidate (e) {
   let whichTownValid = false;
   let regExpName = /^[A-Za-z\-]{2,}$/;
   let regExpEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+  let regExpNumbers = /^[0-9]*$/;
 
   // Vérification du champ Prénom 
 
@@ -145,5 +146,22 @@ function submitValidate (e) {
     emailValid = true;
     email.style.border = "0px";
     errorEmail.innerHTML = "";
+  }
+
+  // Vérification du champ nombre de tournois GameOn
+
+  if (quantityTournament.value == "") {
+    errorQuantityTournament.innerHTML = "Veuillez préciser dans ce champ le nombre de tournois GameOn auquel vous avez participé.";
+    quantityTournament.style.border = "2px solid #e54858";
+    quantityTournamentValid = false;
+  } else if (regExpNumbers.test(quantityTournament.value)===false) {
+      errorQuantityTournament.innerHTML = "Vous devez saisir seulement des chiffres.";
+      quantityTournament.style.border = "2px solid #e54858";
+      quantityTournamentValid = false;
+  }
+  else {
+    quantityTournamentValid = true;
+    quantityTournament.style.border = "0px";
+    errorQuantityTournament.innerHTML = "";
   }
 }
