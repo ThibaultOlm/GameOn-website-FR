@@ -148,6 +148,18 @@ function submitValidate (e) {
     errorEmail.innerHTML = "";
   }
 
+  // Vérification du champ Date de naissance
+
+  if (birthdayDate.value == "") {
+    errorBirthdate.innerHTML = "Veuillez préciser votre date de naissance dans ce champ.";
+    birthdayDate.style.border = "2px solid #e54858";
+    birthdayDateValid = false;
+  } else {
+    birthdayDateValid = true;
+    birthdayDate.style.border = "0px";
+    errorBirthdate.innerHTML = "";
+  }
+
   // Vérification du champ nombre de tournois GameOn
 
   if (quantityTournament.value == "") {
