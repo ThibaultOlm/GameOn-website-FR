@@ -52,7 +52,7 @@ const errorConditionUser = document.querySelector("#errorconditionuser");
 
 // Test récupération des données du formulaire
 
-form.addEventListener('submit', submitValidateTest);
+/* form.addEventListener('submit', submitValidateTest);
 
 function submitValidateTest(e) {
 
@@ -74,11 +74,11 @@ function submitValidateTest(e) {
           console.log(element[i].value);
    }
   }
-}
+} */
 
 // Click to validate form
 
-/* form.addEventListener('submit', submitValidate);
+form.addEventListener('submit', submitValidate);
 
 // Function to validate value 
 
@@ -93,6 +93,7 @@ function submitValidate (e) {
   let quantityTournamentValid = false; 
   let whichTownValid = false;
   let regExpName = /^[A-Za-z\-]{2,}$/;
+  let regExpEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
   // Vérification du champ Prénom 
 
@@ -128,4 +129,21 @@ function submitValidate (e) {
     lastName.style.border = "0px";
     errorLastName.innerHTML = "";
   }
-} */
+
+  // Vérification du champ Email
+
+  if (email.value == "") {
+    errorEmail.innerHTML = "Veuillez préciser votre adresse email dans ce champ.";
+    email.style.border = "2px solid #e54858";
+    emailValid = false;
+  } else if (regExpEmail.test(email.value)===false) {
+      errorEmail.innerHTML = "L'adresse email saisie est incorrecte.";
+      email.style.border = "2px solid #e54858";
+      emailValid = false;
+  }
+  else {
+    emailValid = true;
+    email.style.border = "0px";
+    errorEmail.innerHTML = "";
+  }
+}
