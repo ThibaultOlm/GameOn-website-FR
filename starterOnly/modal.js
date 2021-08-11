@@ -92,6 +92,7 @@ function submitValidate (e) {
   let birthdayDateValid = false; 
   let quantityTournamentValid = false; 
   let whichTownValid = false;
+  let conditionUserValid = false;
   let regExpName = /^[A-Za-z\-]{2,}$/;
   let regExpEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
   let regExpNumbers = /^[0-9]*$/;
@@ -191,5 +192,18 @@ function submitValidate (e) {
   if(whichTownValid===false) {
     console.log("c'est une erreur");
     errorWhichTown.innerHTML = "Veuillez sélectionner au moins un choix de ville.";
+  }
+
+  // Vérification du checkbox des conditions d'utilisation
+
+  const conditionUser = document.querySelector("#checkbox1");
+
+  if(conditionUser.checked) {
+    errorConditionUser.innerHTML = "";
+    conditionUserValid = true;
+  }
+  else {
+    errorConditionUser.innerHTML = "Veuillez acceptez les conditions d'utilisation.";
+    conditionUserValid = false;
   }
 }
