@@ -64,11 +64,11 @@ function submitValidateTest(e) {
   console.log("Date de naissance : " + birthdayDate.value);
   console.log("Nombre de tournois : " + quantityTournament.value);
 
-  const element = document.getElementsByTagName('input');
+  const element = document.querySelectorAll('input[name="location"]');
 
   for(i = 0; i < element.length; i++) {
 
-    if(element[i].type="radio") {
+    if(element[i].type="checkbox") {
                   
       if(element[i].checked)
           console.log(element[i].value);
@@ -175,5 +175,21 @@ function submitValidate (e) {
     quantityTournamentValid = true;
     quantityTournament.style.border = "0px";
     errorQuantityTournament.innerHTML = "";
+  }
+
+  // Vérification du champ Radio "Quelles villes"
+
+  const whichTown = document.querySelectorAll('input[name="location"]');
+
+  for(var i=0; i < whichTown.length; i++) {
+      if(whichTown[i].checked) {
+        console.log(whichTown[i].value);
+        whichTownValid = true;
+        errorWhichTown.innerHTML = "";
+      }
+  }
+  if(whichTownValid===false) {
+    console.log("c'est une erreur");
+    errorWhichTown.innerHTML = "Veuillez sélectionner au moins un choix de ville.";
   }
 }
