@@ -30,25 +30,10 @@ modalClose.addEventListener("click",() => modalbg.style.display = "none");
 
 /*----------------------- GESTION  DU FORMULAIRE -------------------------*/
 
-// Variables 
+// Variables générales du formulaire
 
 const form = document.querySelector("#formulaire");
-const firstName = document.querySelector("#first");
-const lastName = document.querySelector("#last");
-const email = document.querySelector("#email");
-const birthdayDate = document.querySelector("#birthdate");
-const quantityTournament = document.querySelector("#quantity");
 const modalSubmit = document.querySelector(".btn-submit");
-
-// Variables d'erreurs
-
-const errorFirstName = document.querySelector("#errorfirstname");
-const errorLastName = document.querySelector("#errorlastname");
-const errorEmail = document.querySelector("#erroremail");
-const errorBirthdate = document.querySelector("#errorbirthdate");
-const errorQuantityTournament = document.querySelector("#errorquantitytournament");
-const errorWhichTown = document.querySelector("#errorwhichtown");
-const errorConditionUser = document.querySelector("#errorconditionuser");
 
 // Test récupération des données du formulaire
 
@@ -97,7 +82,10 @@ function submitValidate (e) {
   let regExpEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
   let regExpNumbers = /^[0-9]*$/;
 
-  // Vérification du champ Prénom 
+  // Vérification du champ Prénom
+
+  const firstName = document.querySelector("#first");
+  const errorFirstName = document.querySelector("#errorfirstname");
 
   if (firstName.value == "") {
     errorFirstName.innerHTML = "Veuillez préciser votre Prénom dans ce champ.";
@@ -117,6 +105,9 @@ function submitValidate (e) {
 
   // Vérification du champ Nom
 
+  const lastName = document.querySelector("#last");
+  const errorLastName = document.querySelector("#errorlastname");
+
   if (lastName.value == "") {
     errorLastName.innerHTML = "Veuillez préciser votre Nom dans ce champ.";
     lastName.style.border = "2px solid #e54858";
@@ -133,6 +124,9 @@ function submitValidate (e) {
   }
 
   // Vérification du champ Email
+
+  const email = document.querySelector("#email");
+  const errorEmail = document.querySelector("#erroremail");
 
   if (email.value == "") {
     errorEmail.innerHTML = "Veuillez préciser votre adresse email dans ce champ.";
@@ -151,6 +145,9 @@ function submitValidate (e) {
 
   // Vérification du champ Date de naissance
 
+  const birthdayDate = document.querySelector("#birthdate");
+  const errorBirthdate = document.querySelector("#errorbirthdate");
+
   if (birthdayDate.value == "") {
     errorBirthdate.innerHTML = "Veuillez préciser votre date de naissance dans ce champ.";
     birthdayDate.style.border = "2px solid #e54858";
@@ -162,6 +159,9 @@ function submitValidate (e) {
   }
 
   // Vérification du champ nombre de tournois GameOn
+
+  const quantityTournament = document.querySelector("#quantity");
+  const errorQuantityTournament = document.querySelector("#errorquantitytournament");
 
   if (quantityTournament.value == "") {
     errorQuantityTournament.innerHTML = "Veuillez préciser dans ce champ le nombre de tournois GameOn auquel vous avez participé.";
@@ -181,6 +181,7 @@ function submitValidate (e) {
   // Vérification du champ Radio "Quelles villes"
 
   const whichTown = document.querySelectorAll('input[name="location"]');
+  const errorWhichTown = document.querySelector("#errorwhichtown");
 
   for(var i=0; i < whichTown.length; i++) {
       if(whichTown[i].checked) {
@@ -197,6 +198,7 @@ function submitValidate (e) {
   // Vérification du checkbox des conditions d'utilisation
 
   const conditionUser = document.querySelector("#checkbox1");
+  const errorConditionUser = document.querySelector("#errorconditionuser");
 
   if(conditionUser.checked) {
     errorConditionUser.innerHTML = "";
