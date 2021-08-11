@@ -50,7 +50,7 @@ const errorQuantityTournament = document.querySelector("#errorquantitytournament
 const errorWhichTown = document.querySelector("#errorwhichtown");
 const errorConditionUser = document.querySelector("#errorconditionuser");
 
-/* Test récupération des données du formulaire
+// Test récupération des données du formulaire
 
 form.addEventListener('submit', submitValidateTest);
 
@@ -62,12 +62,23 @@ function submitValidateTest(e) {
   console.log("Nom : " + lastName.value);
   console.log("Adresse email : " + email.value);
   console.log("Date de naissance : " + birthdayDate.value);
+  console.log("Nombre de tournois : " + quantityTournament.value);
 
-} */
+  const element = document.getElementsByTagName('input');
+
+  for(i = 0; i < element.length; i++) {
+
+    if(element[i].type="radio") {
+                  
+      if(element[i].checked)
+          console.log(element[i].value);
+   }
+  }
+}
 
 // Click to validate form
 
-form.addEventListener('submit', submitValidate);
+/* form.addEventListener('submit', submitValidate);
 
 // Function to validate value 
 
@@ -117,4 +128,4 @@ function submitValidate (e) {
     lastName.style.border = "0px";
     errorLastName.innerHTML = "";
   }
-}
+} */
