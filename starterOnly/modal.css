@@ -208,6 +208,10 @@ input {
   font-size: 20px;
   height: 48px;
 }
+.text-validation {
+  text-align: center;
+  margin-top: 20px;
+}
 .formData .error {
   font-size: 0.6em;
   color: #e54858;

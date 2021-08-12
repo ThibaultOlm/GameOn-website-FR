@@ -1,8 +1,10 @@
 // DOM Elements
-const modalbg = document.querySelector(".bground");
+const modalbg = document.querySelector("#bgroundform");
+const modalValidation = document.querySelector("#bgroundvalidation");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
-const modalClose = document.querySelector(".content .close");
+const modalClose = document.querySelector("#closeform");
+const modalCloseValidation = document.querySelector("#closevalidation");
 const modalIconResponsive = document.querySelector(".icon");
 
 /*---- Fonction permettant l'affichage du menu burger en responsive-----*/
@@ -27,6 +29,8 @@ modalBtn.forEach((btn) => btn.addEventListener("click",() => modalbg.style.displ
 // Click to leave
 modalClose.addEventListener("click",() => modalbg.style.display = "none");
 
+// Click to leave modal Validation
+modalCloseValidation.addEventListener("click",() => modalValidation.style.display = "none");
 
 /*----------------------- GESTION  DU FORMULAIRE -------------------------*/
 
@@ -207,5 +211,20 @@ function submitValidate (e) {
   else {
     errorConditionUser.innerHTML = "Veuillez acceptez les conditions d'utilisation.";
     conditionUserValid = false;
+  }
+
+  // Validation du formulaire si toutes les conditions sont respectées 
+
+  if (firstNameValid===true && lastNameValid===true && emailValid===true && birthdayDateValid===true && quantityTournamentValid===true && whichTownValid===true && conditionUserValid===true) {
+    modalbg.style.display = "none";
+    modalValidation.style.display = "block";
+    function removeData (){
+      firstName.value ="";
+      lastName.value ="";
+      email.value ="";
+      birthdayDate.value ="";
+      quantityTournament.value ="";
+      whichTown.checked ="";
+    }
   }
 }
