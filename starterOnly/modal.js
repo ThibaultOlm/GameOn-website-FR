@@ -34,36 +34,10 @@ modalCloseValidation.addEventListener("click",() => modalValidation.style.displa
 
 /*----------------------- GESTION  DU FORMULAIRE -------------------------*/
 
-// Variables générales du formulaire
+// Constantes générales du formulaire
 
 const form = document.querySelector("#formulaire");
 const modalSubmit = document.querySelector(".btn-submit");
-
-// Test récupération des données du formulaire
-
-/* form.addEventListener('submit', submitValidateTest);
-
-function submitValidateTest(e) {
-
-  e.preventDefault();
-
-  console.log("Prénom : " + firstName.value);
-  console.log("Nom : " + lastName.value);
-  console.log("Adresse email : " + email.value);
-  console.log("Date de naissance : " + birthdayDate.value);
-  console.log("Nombre de tournois : " + quantityTournament.value);
-
-  const element = document.querySelectorAll('input[name="location"]');
-
-  for(i = 0; i < element.length; i++) {
-
-    if(element[i].type="checkbox") {
-                  
-      if(element[i].checked)
-          console.log(element[i].value);
-   }
-  }
-} */
 
 // Click to validate form
 
@@ -74,6 +48,8 @@ form.addEventListener('submit', submitValidate);
 function submitValidate (e) {
 
   e.preventDefault(); 
+
+  // Définition des variables 
 
   let firstNameValid = false;
   let lastNameValid = false;
@@ -86,123 +62,147 @@ function submitValidate (e) {
   let regExpEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
   let regExpNumbers = /^[0-9]*$/;
 
-  // Vérification du champ Prénom
+  // Définition des constantes 
 
   const firstName = document.querySelector("#first");
-  const errorFirstName = document.querySelector("#errorfirstname");
+  const lastName = document.querySelector("#last");
+  const email = document.querySelector("#email");
+  const birthdayDate = document.querySelector("#birthdate");
+  const quantityTournament = document.querySelector("#quantity");
+  const whichTown = document.querySelectorAll('input[name="location"]');
+  const conditionUser = document.querySelector("#checkbox1");
 
-  if (firstName.value == "") {
-    errorFirstName.innerHTML = "Veuillez préciser votre Prénom dans ce champ.";
-    firstName.style.border = "2px solid #e54858";
-    firstNameValid = false;
-  } 
-  else if (regExpName.test(firstName.value)===false) {
-      errorFirstName.innerHTML = "Veuillez entrer au minimum 2 caratères et seulement des lettres.";
-      firstName.style.border = "2px solid #e54858";
-      firstNameValid = false;
-  } 
-  else {
-    firstNameValid = true;
-    firstName.style.border = "0px";
-    errorFirstName.innerHTML = "";
+  // Définition des constantes d'erreur 
+
+  const errorFirstName = document.querySelector("#errorfirstname");
+  const errorLastName = document.querySelector("#errorlastname");
+  const errorEmail = document.querySelector("#erroremail");
+  const errorBirthdate = document.querySelector("#errorbirthdate");
+  const errorQuantityTournament = document.querySelector("#errorquantitytournament");
+  const errorWhichTown = document.querySelector("#errorwhichtown");
+  const errorConditionUser = document.querySelector("#errorconditionuser");
+
+
+  // Fonction de vérification des champs
+  
+  function controlInput(input,inputError,textErrorEmpty, textError,regex,isValid){
+    
+    if (input.value == "") {
+      inputError.innerHTML = textErrorEmpty;
+      input.style.border = "2px solid #e54858";
+      isValid = false;
+    } 
+    else if (regex.test(input.value)===false) {
+        inputError.innerHTML = textError;
+        input.style.border = "2px solid #e54858";
+        isValid = false;
+    } 
+    else {
+      isValid = true;
+      input.style.border = "0px";
+      inputError.innerHTML = "";
+    }
+
+    return isValid;
   }
 
+  // Vérification du champ Prénom
+
+  firstNameValid = controlInput(firstName,
+    errorFirstName,
+    "Veuillez préciser votre Prénom dans ce champ.",
+    "Veuillez entrer au minimum 2 caratères et seulement des lettres.",
+    regExpName,
+    firstNameValid);
+  
   // Vérification du champ Nom
 
-  const lastName = document.querySelector("#last");
-  const errorLastName = document.querySelector("#errorlastname");
+  lastNameValid = controlInput(lastName,
+    errorLastName,
+    "Veuillez préciser votre Nom dans ce champ.",
+    "Veuillez entrer au minimum 2 caratères et seulement des lettres.",
+    regExpName,
+    lastNameValid);
+  
+  // Méthode 2 (test)
 
-  if (lastName.value == "") {
-    errorLastName.innerHTML = "Veuillez préciser votre Nom dans ce champ.";
-    lastName.style.border = "2px solid #e54858";
-    lastNameValid = false;
-  } else if (regExpName.test(lastName.value)===false) {
-      errorLastName.innerHTML = "Veuillez entrer au minimum 2 caratères et seulement des lettres.";
-      lastName.style.border = "2px solid #e54858";
-      lastNameValid = false;
+  /* let lastName =  {
+    input : lastName,
+    inputError : errorLastName,
+    textError : "Veuillez préciser votre Nom dans ce champ.",
+    textErrorEmpty : "Veuillez entrer au minimum 2 caratères et seulement des lettres.",
+    regex : regExpName,
+    isValid : lastNameValid
   }
-  else {
-    lastNameValid = true;
-    lastName.style.border = "0px";
-    errorLastName.innerHTML = "";
+
+  function controlInput(element){
+    
+    if (element.input.value == "") {
+      element.inputError.innerHTML = textErrorEmpty;
+      element.input.style.border = "2px solid #e54858";
+      isValid = false;
+    } 
+    else if (element.regex.test(element.input.value)===false) {
+      element.inputError.innerHTML = element.textError;
+      element.input.style.border = "2px solid #e54858";
+      element.isValid = false;
+    } 
+    else {
+      element.isValid = true;
+      element.input.style.border = "0px";
+      element.inputError.innerHTML = "";
+    }
+
+    return element.isValid;
   }
+
+  lastNameValid = controlInput(lastName) */
+
 
   // Vérification du champ Email
 
-  const email = document.querySelector("#email");
-  const errorEmail = document.querySelector("#erroremail");
-
-  if (email.value == "") {
-    errorEmail.innerHTML = "Veuillez préciser votre adresse email dans ce champ.";
-    email.style.border = "2px solid #e54858";
-    emailValid = false;
-  } else if (regExpEmail.test(email.value)===false) {
-      errorEmail.innerHTML = "L'adresse email saisie est incorrecte.";
-      email.style.border = "2px solid #e54858";
-      emailValid = false;
-  }
-  else {
-    emailValid = true;
-    email.style.border = "0px";
-    errorEmail.innerHTML = "";
-  }
-
+  emailValid = controlInput(email,
+    errorEmail,
+    "Veuillez préciser votre adresse email dans ce champ.",
+    "L'adresse email saisie est incorrecte.",
+    regExpEmail,
+    emailValid);
+  
   // Vérification du champ Date de naissance
 
-  const birthdayDate = document.querySelector("#birthdate");
-  const errorBirthdate = document.querySelector("#errorbirthdate");
-
   if (birthdayDate.value == "") {
-    errorBirthdate.innerHTML = "Veuillez préciser votre date de naissance dans ce champ.";
-    birthdayDate.style.border = "2px solid #e54858";
-    birthdayDateValid = false;
+      errorBirthdate.innerHTML = "Veuillez préciser votre date de naissance dans ce champ.";
+      birthdayDate.style.border = "2px solid #e54858";
+      birthdayDateValid = false;
   } else {
-    birthdayDateValid = true;
-    birthdayDate.style.border = "0px";
-    errorBirthdate.innerHTML = "";
-  }
-
+      birthdayDateValid = true;
+      birthdayDate.style.border = "0px";
+      errorBirthdate.innerHTML = "";
+    }
+  
   // Vérification du champ nombre de tournois GameOn
 
-  const quantityTournament = document.querySelector("#quantity");
-  const errorQuantityTournament = document.querySelector("#errorquantitytournament");
-
-  if (quantityTournament.value == "") {
-    errorQuantityTournament.innerHTML = "Veuillez préciser dans ce champ le nombre de tournois GameOn auquel vous avez participé.";
-    quantityTournament.style.border = "2px solid #e54858";
-    quantityTournamentValid = false;
-  } else if (regExpNumbers.test(quantityTournament.value)===false) {
-      errorQuantityTournament.innerHTML = "Vous devez saisir seulement des chiffres.";
-      quantityTournament.style.border = "2px solid #e54858";
-      quantityTournamentValid = false;
-  }
-  else {
-    quantityTournamentValid = true;
-    quantityTournament.style.border = "0px";
-    errorQuantityTournament.innerHTML = "";
-  }
-
+  quantityTournamentValid = controlInput(quantityTournament,
+    errorQuantityTournament,
+    "Veuillez préciser dans ce champ le nombre de tournois GameOn auquel vous avez participé.",
+    "Vous devez saisir seulement des chiffres.",
+    regExpNumbers,
+    quantityTournamentValid);
+  
   // Vérification du champ Radio "Quelles villes"
 
-  const whichTown = document.querySelectorAll('input[name="location"]');
-  const errorWhichTown = document.querySelector("#errorwhichtown");
-
-  for(var i=0; i < whichTown.length; i++) {
-      if(whichTown[i].checked) {
-        console.log(whichTown[i].value);
+  for(let i=0; i < whichTown.length; i++) {
+    if(whichTown[i].checked) {
         whichTownValid = true;
         errorWhichTown.innerHTML = "";
-      }
+    }
   }
-  if(whichTownValid===false) {
-    console.log("c'est une erreur");
-    errorWhichTown.innerHTML = "Veuillez sélectionner au moins un choix de ville.";
-  }
+    if(whichTownValid===false) {
+      errorWhichTown.innerHTML = "Veuillez sélectionner au moins un choix de ville.";
+    }
+
 
   // Vérification du checkbox des conditions d'utilisation
-
-  const conditionUser = document.querySelector("#checkbox1");
-  const errorConditionUser = document.querySelector("#errorconditionuser");
 
   if(conditionUser.checked) {
     errorConditionUser.innerHTML = "";
@@ -215,16 +215,16 @@ function submitValidate (e) {
 
   // Validation du formulaire si toutes les conditions sont respectées 
 
-  if (firstNameValid===true && lastNameValid===true && emailValid===true && birthdayDateValid===true && quantityTournamentValid===true && whichTownValid===true && conditionUserValid===true) {
+  if (firstNameValid && lastNameValid && emailValid && birthdayDateValid && quantityTournamentValid && whichTownValid && conditionUserValid) {
     modalbg.style.display = "none";
     modalValidation.style.display = "block";
-    function removeData (){
-      firstName.value ="";
-      lastName.value ="";
-      email.value ="";
-      birthdayDate.value ="";
-      quantityTournament.value ="";
-      whichTown.checked ="";
+    firstName.value ="";
+    lastName.value ="";
+    email.value ="";
+    birthdayDate.value ="";
+    quantityTournament.value ="";
+    for(let i=0; i < whichTown.length; i++) {
+      whichTown[i].checked = whichTown[i].defaultSelected;
     }
   }
 }
